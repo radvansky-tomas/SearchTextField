@@ -69,7 +69,7 @@ class MainViewController: UITableViewController {
         acronymTextField.comparisonOptions = [.caseInsensitive]
 
         // Customize highlight attributes - Default: Bold
-        acronymTextField.highlightAttributes = [NSBackgroundColorAttributeName: UIColor.yellow, NSFontAttributeName:UIFont.boldSystemFont(ofSize: 12)]
+        acronymTextField.highlightAttributes = [NSAttributedStringKey.backgroundColor.rawValue: UIColor.yellow, NSAttributedStringKey.font.rawValue:UIFont.boldSystemFont(ofSize: 12)]
         
         // Handle item selection - Default behaviour: item title set to the text field
         acronymTextField.itemSelectionHandler = { filteredResults, itemPosition in
@@ -82,9 +82,9 @@ class MainViewController: UITableViewController {
         }
         
         // Update data source when the user stops typing
-        acronymTextField.userStoppedTypingHandler = {
+        acronymTextField.userStoppedTypingHandler = {() -> () in
             if let criteria = self.acronymTextField.text {
-                if criteria.characters.count > 1 {
+                if criteria.count > 1 {
                     
                     // Show loading indicator
                     self.acronymTextField.showLoadingIndicator()
